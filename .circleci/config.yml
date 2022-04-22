@@ -3,7 +3,7 @@ defaults: &defaults
   working_directory: ~/repo
   docker:
     - image: circleci/node:12.13
-    
+
 jobs:
   test:
     <<: *defaults
@@ -39,6 +39,7 @@ jobs:
 
 
 workflows:
+  version: 2
   puppeteer_pipeline:
     jobs:
       - test
