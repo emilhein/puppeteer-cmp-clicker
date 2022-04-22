@@ -13,8 +13,9 @@ jobs:
       - run:
           command: npm test
           name: Run tests
-
   deploy:
+    docker:
+      - image: cimg/node:17.2.0
     steps:
       - attach_workspace:
           at: ~/repo
@@ -25,7 +26,9 @@ jobs:
           name: Publish package
           command: npm publish
 
+
 workflows:
   puppeteer_test:
     jobs:
       - build_and_test
+      - deploy
