@@ -1,4 +1,4 @@
-version: 2
+version: 2.1
 defaults: &defaults
   working_directory: ~/repo
   docker:
@@ -39,7 +39,6 @@ jobs:
 
 
 workflows:
-  version: 2
   puppeteer_pipeline:
     jobs:
       - test
