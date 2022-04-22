@@ -1,51 +1,17 @@
-  
-version: 2.1
+version: 2.0
 jobs:
   build:
     docker:
-      - image: circleci/node:latest
-
-    working_directory: ~/repo
-
+      - image: circleci/node
     steps:
       - checkout
-
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "package.json" }}
-            - v1-dependencies-
-
-      - run: npm install
-
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
-
-      # run tests!
-      - run: npm test
-
-      # store test results
-      - store_test_results:
-          path: test_results
-
-      # store code coverage
-      - persist_to_workspace:
-          root: ~/repo
-          paths: .
-
-      - attach_workspace:
-          at: ~/repo
       - run:
-          name: Authenticate with NPM
-          command: echo "//registry.npmjs.org/:_authToken=$npm_TOKEN" > ~/repo/.npmrc
+          name: Install npm 
+          command: npm install
+      - run: 
+          name: Auth With NPM
+          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc
       - run:
-          name: Publish package
-          command: npm publish --access public
-         
-
-
-workflows:
-  build-and-publish:
-    jobs:
-      - build
+          name: Publish to NPM
+          command: npm publish
+          
