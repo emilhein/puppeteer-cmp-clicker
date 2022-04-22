@@ -17,6 +17,6 @@ jobs:
 
 
 workflows:
-  test_my_app:
+  puppeteer_test:
     jobs:
       - build_and_test

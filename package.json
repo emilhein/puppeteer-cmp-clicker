@@ -4,7 +4,11 @@
   "description": "Helper function for general popup click of CMP's",
   "main": "index.js",
   "scripts": {
-    "test": "npm test"
+    "test": "nyc --reporter=html mocha"
+  },
+  "devDependencies": {
+    "mocha": "9.2.2",
+    "nyc": "15.1.0"
   },
   "repository": {
     "type": "git",
