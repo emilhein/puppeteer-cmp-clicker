@@ -12,3 +12,5 @@ jobs:
         email: "$npm_EMAIL"
         api_key: "$npm_TOKEN"
         cleanup: true
+        on:
+          branch: main
