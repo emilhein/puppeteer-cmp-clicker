@@ -3,26 +3,41 @@ orbs:
   node: circleci/node@4.7.0
 
 jobs:
-  test_and_publish:
-    docker:
-      - image: cimg/node:17.2.0
+  test:
+    <<: *defaults
     steps:
       - checkout
-      - node/install-packages:
-          pkg-manager: npm
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies- # fallback match
       - run:
-          command: npm test
-          name: Run tests
+          name: Install dependencies
+          command: npm install
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+      - run: npm run test
+      - persist_to_workspace:
+          root: ~/repo
+          paths: .
+
+  publish:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/repo
       - run:
           name: Authenticate with registry
-          command: echo "//registry.npmjs.org/:_authToken=$npm_TOKEN" > ~/ .npmrc
+          command: echo "//registry.npmjs.org/:_authToken=$npm_TOKEN" > ~/repo/.npmrc
       - run:
           name: Publish package
-          command: npm publish          
-
+          command: npm publish
 
 
 workflows:
-  puppeteer_test:
+  puppeteer_pipeline:
     jobs:
-      - test_and_publish
+      - test
+      - publish
