@@ -1,17 +1,33 @@
-version: 2.0
+
+
+
+version: 2.1
+orbs:
+  node: circleci/node@4.7.0
+
 jobs:
-  build:
+  build_and_publish:
     docker:
-      - image: circleci/node
+      - image: cimg/node:17.2.0
     steps:
       - checkout
+      - node/install-packages:
+          pkg-manager: npm
       - run:
-          name: Install npm 
-          command: npm install
+          command: npm test
+          name: Run tests
       - run: 
           name: Auth With NPM
-          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc
+          command: echo "//registry.npmjs.org/:_authToken=$npm_TOKEN" > .npmrc
       - run:
           name: Publish to NPM
-          command: npm publish
-          
+          command: npm publish --access public
+      - persist_to_workspace:
+          root: ~/project
+          paths:
+            - .
+
+workflows:
+  puppeteer-package-flow:
+    jobs:
+      - build_and_publish
