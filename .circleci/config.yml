@@ -34,13 +34,6 @@ jobs:
           root: ~/repo
           paths: .
 
-  deploy:
-    docker:
-      - image: circleci/node:latest
-
-    working_directory: ~/repo
-
-    steps:
       - attach_workspace:
           at: ~/repo
       - run:
@@ -49,11 +42,10 @@ jobs:
       - run:
           name: Publish package
           command: npm publish --access public
+         
+
 
 workflows:
   build-and-publish:
     jobs:
       - build
-      - deploy:
-          requires:
-            - build
