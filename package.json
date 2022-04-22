@@ -1,5 +1,5 @@
 {
-  "name": "@dkhein/puppeteer-cmp-clicker",
+  "name": "puppeteer-cmp-clicker",
   "version": "1.0.0",
   "description": "Helper function for general popup click of CMP's",
   "main": "index.js",
