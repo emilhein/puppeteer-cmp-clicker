@@ -1,0 +1,28 @@
+{
+  "name": "@emilhein/puppeteer-cmp-clicker",
+  "version": "1.0.0",
+  "description": "Helper function for general popup click of CMP's",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emilhein/puppeteer-cmp-clicker.git"
+  },
+  "keywords": [
+    "puppeteer",
+    "utility",
+    "cmp",
+    "clicker",
+    "popup",
+    "nodejs",
+    "js"
+  ],
+  "author": "Emil Hein",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/emilhein/puppeteer-cmp-clicker/issues"
+  },
+  "homepage": "https://github.com/emilhein/puppeteer-cmp-clicker#readme"
+}
