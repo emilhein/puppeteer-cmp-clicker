@@ -1,33 +1,81 @@
+  
+# version: 2.1
+# jobs:
+#   build:
+#     docker:
+#       - image: circleci/node:latest
+
+#     working_directory: ~/repo
+
+#     steps:
+#       - checkout
+
+#       - restore_cache:
+#           keys:
+#             - v1-dependencies-{{ checksum "package.json" }}
+#             - v1-dependencies-
+
+#       - run: npm install
+
+#       - save_cache:
+#           paths:
+#             - node_modules
+#           key: v1-dependencies-{{ checksum "package.json" }}
+
+#       # run tests!
+#       - run: npm test
+
+#       # store test results
+#       - store_test_results:
+#           path: test_results
+
+#       # store code coverage
+#       - persist_to_workspace:
+#           root: ~/repo
+#           paths: .
+
+#       - attach_workspace:
+#           at: ~/repo
+#       - run:
+#           name: Authenticate with NPM
+#           command: echo "//registry.npmjs.org/:_authToken=$npm_TOKEN" > ~/repo/.npmrc
+#       - run:
+#           name: Publish package
+#           command: npm publish --access public
+         
+
+
+# workflows:
+#   build-and-publish:
+#     jobs:
+#       - build
 
 
 
 version: 2.1
-orbs:
-  node: circleci/node@4.7.0
 
+# Define the jobs we want to run for this project
 jobs:
-  build_and_publish:
+  build:
     docker:
-      - image: cimg/node:17.2.0
+      - image: cimg/node:latest
+
     steps:
       - checkout
-      - node/install-packages:
-          pkg-manager: npm
-      - run:
-          command: npm test
-          name: Run tests
-      - run: 
-          name: Auth With NPM
-          command: echo "//registry.npmjs.org/:_authToken=$npm_TOKEN" > .npmrc
-      - run:
-          name: Publish to NPM
-          command: npm publish --access public
-      - persist_to_workspace:
-          root: ~/project
-          paths:
-            - .
+      - run: echo "this is the build job"
+  test:
+    docker:
+      - image: cimg/node:latest
 
+    steps:
+      - checkout
+      - run: echo "this is the test job"
+
+# Orchestrate our job run sequence
 workflows:
-  puppeteer-package-flow:
+  build_and_test:
     jobs:
-      - build_and_publish
+      - build
+      - test:
+          requires:
+            - build
