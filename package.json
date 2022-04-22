@@ -28,5 +28,8 @@
   "bugs": {
     "url": "https://github.com/emilhein/puppeteer-cmp-clicker/issues"
   },
-  "homepage": "https://github.com/emilhein/puppeteer-cmp-clicker#readme"
+  "homepage": "https://github.com/emilhein/puppeteer-cmp-clicker#readme",
+  "publishConfig": {
+    "access": "public"
+  }
 }
