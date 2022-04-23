@@ -1,35 +1,38 @@
 {
-  "name": "puppeteer-cmp-clicker",
-  "version": "1.0.0",
-  "description": "Helper function for general popup click of CMP's",
-  "main": "index.js",
-  "scripts": {
-    "test": "nyc --reporter=html mocha"
-  },
-  "devDependencies": {
-    "mocha": "9.2.2",
-    "nyc": "15.1.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/emilhein/puppeteer-cmp-clicker.git"
-  },
-  "keywords": [
-    "puppeteer",
-    "utility",
-    "cmp",
-    "clicker",
-    "popup",
-    "nodejs",
-    "js"
-  ],
-  "author": "Emil Hein",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/emilhein/puppeteer-cmp-clicker/issues"
-  },
-  "homepage": "https://github.com/emilhein/puppeteer-cmp-clicker#readme",
-  "publishConfig": {
-    "access": "public"
-  }
+    "name": "puppeteer-cmp-clicker",
+    "version": "1.0.1",
+    "description": "Helper function for general popup click of CMP's",
+    "main": "index.js",
+    "scripts": {
+        "test-ceoverrage": "nyc --reporter=html mocha --timeout 10000",
+        "test": "mocha --timeout 15000"
+    },
+    "devDependencies": {
+        "chrome-aws-lambda": "^10.1.0",
+        "puppeteer": "13.6.0",
+        "mocha": "9.2.2",
+        "nyc": "15.1.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/emilhein/puppeteer-cmp-clicker.git"
+    },
+    "keywords": [
+        "puppeteer",
+        "utility",
+        "cmp",
+        "clicker",
+        "popup",
+        "nodejs",
+        "js"
+    ],
+    "author": "Emil Hein",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/emilhein/puppeteer-cmp-clicker/issues"
+    },
+    "homepage": "https://github.com/emilhein/puppeteer-cmp-clicker#readme",
+    "publishConfig": {
+        "access": "public"
+    }
 }

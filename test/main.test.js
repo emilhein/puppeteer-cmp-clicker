@@ -1,12 +1,43 @@
 "use strict";
+const chromium = require('chrome-aws-lambda');
+
 const assert = require("assert");
-// const { cmpClickAndFinder } = require("./../module/puppeteer-cmp-clicker");
+const { cmpClickAndFinder } = require("./../module/puppeteer-cmp-clicker");
 
 
 describe("The module test suite", function() {
     it("A Happy path for the cmpClickAndFinder function", async () => {
-        assert.deepEqual([1, 2].length, 2);
-        // cmpClickAndFinder()
+
+        let browser = null;
+
+        try {
+            browser = await chromium.puppeteer.launch({
+                args: chromium.args,
+                defaultViewport: chromium.defaultViewport,
+                executablePath: await chromium.executablePath,
+                headless: true, // chromium.headless,
+                ignoreHTTPSErrors: true,
+            });
+
+            let page = await browser.newPage();
+
+            await page.goto('https://nytimes.com', { waitUntil: 'networkidle0' });
+
+            let res = await cmpClickAndFinder({ page })
+
+            assert.deepEqual(res[0], 'KNOWN CLASS');
+            return
+        } catch (error) {
+            await browser.close();
+
+            console.log(`Overall test error: ${error}`);
+        } finally {
+            if (browser !== null) {
+                await browser.close();
+            }
+            return
+        }
+
 
     });
 
