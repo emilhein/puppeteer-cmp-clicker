@@ -194,7 +194,7 @@ const cookieInformationSolution = async page => {
         return false
     }
 }
-let cmpClickAndFinder = async ({
+let clickCmp = async ({
     page,
     customKnownIds = [],
     customKnownClasses = [],
@@ -214,4 +214,4 @@ let cmpClickAndFinder = async ({
     ])
     return foundCMP.filter(e => Boolean(e))
 }
-module.exports = { cmpClickAndFinder }
+module.exports = { clickCmp }

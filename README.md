@@ -4,7 +4,7 @@
 
 For now i only have one function
 
-#### 1. cmpClickAndFinder({page, customKnownIds = [], customKnownClasses = [],})
+#### 1. clickCmp({page, customKnownIds = [], customKnownClasses = []})
 
 This function takes a puppeteer page as an argument and tries its best to click a cmp if its there
 
@@ -13,7 +13,7 @@ This function takes a puppeteer page as an argument and tries its best to click 
 You need to have puppeteer or puppeteer-core install, but this package should work with your existing puppeteer setup
 
 ```js
-const { cmpClickAndFinder } = require("puppeteer-cmp-clicker");
+const { clickCmp } = require("puppeteer-cmp-clicker");
 const chromium = require('chrome-aws-lambda') // or normal puppeteer package
 
 let   browser = await chromium.puppeteer.launch({
@@ -28,7 +28,7 @@ let page = await browser.newPage();
 
 await page.goto('https://nytimes.com', { waitUntil: 'networkidle0' });
 
-let res = await cmpClickAndFinder({ page })
+let res = await clickCmp({ page })
 
 // Output
 // The CMP of nytimes should be clicked

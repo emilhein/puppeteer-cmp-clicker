@@ -1,3 +1,3 @@
-const { cmpClickAndFinder } = require('./module/puppeteer-cmp-clicker');
+const { clickCmp } = require('./module/puppeteer-cmp-clicker');
 
-module.exports = { cmpClickAndFinder };
+module.exports = { clickCmp };

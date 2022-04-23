@@ -2,11 +2,11 @@
 const chromium = require('chrome-aws-lambda');
 
 const assert = require("assert");
-const { cmpClickAndFinder } = require("./../module/puppeteer-cmp-clicker");
+const { clickCmp } = require("./../module/puppeteer-cmp-clicker");
 
 
 describe("The module test suite", function() {
-    it("A Happy path for the cmpClickAndFinder function", async () => {
+    it("A Happy path for the clickCmp function", async () => {
 
         let browser = null;
 
@@ -23,7 +23,7 @@ describe("The module test suite", function() {
 
             await page.goto('https://nytimes.com', { waitUntil: 'networkidle0' });
 
-            let res = await cmpClickAndFinder({ page })
+            let res = await clickCmp({ page })
 
             assert.deepEqual(res[0], 'KNOWN CLASS');
             return
@@ -41,7 +41,7 @@ describe("The module test suite", function() {
 
     });
 
-    // it("A UNHAPPY path for the cmpClickAndFinder function", async () => {
+    // it("A UNHAPPY path for the clickCmp function", async () => {
 
     // });
 
