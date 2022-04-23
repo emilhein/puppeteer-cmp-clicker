@@ -10,14 +10,27 @@ This function takes a puppeteer page as an argument and tries its best to click 
 
 
 ## Get started
+You need to have puppeteer or puppeteer-core install, but this package should work with your existing puppeteer setup
+
 ```js
 const { cmpClickAndFinder } = require("puppeteer-cmp-clicker");
-// const chromium = require('chrome-aws-lambda') // or normal puppeteer package
+const chromium = require('chrome-aws-lambda') // or normal puppeteer package
 
+let   browser = await chromium.puppeteer.launch({
+    args: chromium.args,
+    defaultViewport: chromium.defaultViewport,
+    executablePath: await chromium.executablePath,
+    headless: true, // chromium.headless,
+    ignoreHTTPSErrors: true,
+});
 
-let cmpClicked = await cmpClickAndFinder({ page })
+let page = await browser.newPage();
+
+await page.goto('https://nytimes.com', { waitUntil: 'networkidle0' });
+
+let res = await cmpClickAndFinder({ page })
 
 // Output
-// Your CMP popup should have been clicked
+// The CMP of nytimes should be clicked
 
 ```
