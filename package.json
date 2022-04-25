@@ -1,6 +1,6 @@
 {
     "name": "puppeteer-cmp-clicker",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "Helper function for general popup click of CMP's",
     "main": "index.js",
     "scripts": {
